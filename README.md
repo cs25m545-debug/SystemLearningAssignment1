@@ -85,7 +85,10 @@ It is deliberately outside `runs/mac-real`, so it does not alter model selection
 Use Python **3.11** (3.12 is also supported) and `uv`. Direct dependencies are
 pinned in `pyproject.toml`; all transitive versions are pinned in `uv.lock`.
 The reference packages are PyTorch 2.6.0, torchvision 0.21.0, NumPy 2.2.3,
-W&B 0.19.8, matplotlib 3.10.0, PyYAML 6.0.2, and ReportLab 4.3.1.
+W&B 0.22.3, matplotlib 3.10.0, PyYAML 6.0.2, and ReportLab 4.3.1.
+The original measured runs used W&B 0.19.8; the tracking client was subsequently
+upgraded to accept the newer `wandb_v1_` API-key format. Model-training dependencies
+and saved results are unchanged; existing offline logs do not require retraining.
 
 ```bash
 uv sync --locked --extra dev --python 3.11
