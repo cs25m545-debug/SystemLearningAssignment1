@@ -12,7 +12,8 @@ best-validation checkpoint selection, separate test evaluation, and a PDF report
 and **86.61% test accuracy** on the official 10,000-example test set.
 The real checkpoint is in `artifacts/mac-final/best.pt`, and the detailed
 final submission PDF with the repository URL is
-[artifacts/assignment1.pdf](artifacts/assignment1.pdf).
+[artifacts/CS25M545_Harshit.pdf](artifacts/CS25M545_Harshit.pdf),
+named according to the required `Rollno_Name.pdf` format.
 All 16 experiments and their automatic plots have been uploaded to W&B; every
 remote epoch was checked against its saved local measurements. The native W&B
 parallel-coordinate panel is [artifacts/wandb-parallel.png](artifacts/wandb-parallel.png).
@@ -301,7 +302,7 @@ retraining or authenticating to W&B:
 uv run --locked vgg6 report --runs artifacts/experiments --final artifacts/mac-final \
   --github-url https://github.com/cs25m545-debug/SystemLearningAssignment1 \
   --wandb-parallel artifacts/wandb-parallel.png \
-  --output artifacts/assignment1.pdf
+  --output artifacts/CS25M545_Harshit.pdf
 ```
 
 `artifacts/experiments/` contains all 16 configurations, verified summaries,
@@ -345,7 +346,7 @@ configuration, test accuracy, plots, and environment. Review the generated
 analysis against W&B and add any further interpretation required by your course.
 
 Commit code, `uv.lock`, `README.md`, `artifacts/final/`, the sweep definitions, the
-W&B panel export, and `artifacts/assignment1.pdf`. Keep datasets, virtualenvs,
+W&B panel export, and `artifacts/CS25M545_Harshit.pdf`. Keep datasets, virtualenvs,
 W&B local logs, and raw run directories out of Git. The model is small enough
 for normal GitHub Git storage; confirm with `ls -lh artifacts/final/best.pt`.
 Make the repository accessible to evaluators; its actual URL is included in the PDF.
@@ -358,11 +359,12 @@ The course handout `A1.pdf` remains local and is not redistributed in this repos
 
 `artifacts/results.csv` contains measured results for all 16 configurations.
 `artifacts/figures/` contains the selected run's four curves and validation
-scatter. `artifacts/assignment1.pdf` is the final PDF containing the genuine W&B
+scatter. `artifacts/CS25M545_Harshit.pdf` is the submission PDF containing the genuine W&B
 parallel-coordinate export, measured comparisons, all requested curves/scatter,
 one selected configuration, test accuracy, environment and reproduction proof.
 The older `artifacts/assignment1-draft.pdf` is retained only as historical output;
-submit the final PDF, not the draft.
+submit `CS25M545_Harshit.pdf`, not the draft. `artifacts/assignment1.pdf` has
+identical contents and is retained under its original generated filename.
 
 `config.py` validates parameters; `model.py` defines the network; `data.py`
 prepares datasets; `training.py` trains/logs/checkpoints; `evaluation.py` computes
