@@ -252,6 +252,10 @@ def build_report(
         paragraph(text + " This conclusion applies only to the measured configuration budget.")
     story.append(PageBreak())
     paragraph("3. Plots", "Heading1")
+    report_metadata = final_dir.parent / "wandb-report.json"
+    if report_metadata.exists():
+        metadata = json.loads(report_metadata.read_text())
+        paragraph(f"W&B report: {metadata['report_url']}")
     if parallel_image:
         paragraph("W&B parallel-coordinate panel exported from the experiment workspace.")
         image(parallel_image)
@@ -282,11 +286,23 @@ def build_report(
         "hardware are required for bitwise reproduction; cross-device exact accuracy is "
         "not guaranteed. uv.lock pins transitive dependencies."
     )
+    reproduction_path = final_dir / "reproduction.json"
+    if reproduction_path.exists():
+        reproduction = json.loads(reproduction_path.read_text())
+        if reproduction["status"] != "passed":
+            raise ValueError("Saved from-scratch reproduction did not pass")
+        paragraph(
+            "An independent from-scratch rerun on the same Mac reproduced validation "
+            f"accuracy {reproduction['reproduced_validation_accuracy']:.4f}% and test "
+            f"accuracy {reproduction['reproduced_test_accuracy']:.4f}%, selecting epoch "
+            f"{reproduction['reproduced_best_epoch']}. The verification is saved in "
+            f"{reproduction_path.as_posix()}."
+        )
     env = json.loads((selected_dir / "environment.json").read_text())
     table([["Environment", "Value"], *[[key, value] for key, value in env.items()]])
     paragraph(
-        "Repository submission must include artifacts/final/best.pt, config.json, final.json, "
-        "history.csv, environment.json, and this PDF. The saved model is a state dictionary "
+        f"The trained checkpoint is {final_dir.as_posix()}/best.pt. Its configuration, results, "
+        "history, and environment are saved alongside it. The saved model is a state dictionary "
         "with its configuration; evaluation reconstructs the architecture without pickled "
         "model objects. Confirm the repository and checkpoint are accessible to evaluators."
     )

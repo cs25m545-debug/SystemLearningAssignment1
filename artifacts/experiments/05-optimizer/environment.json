@@ -1,0 +1,11 @@
+{
+  "python": "3.11.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "torch": "2.6.0",
+  "torchvision": "0.21.0",
+  "numpy": "2.2.3",
+  "device": "mps",
+  "cuda": null,
+  "gpu": null,
+  "deterministic_algorithms": true
+}

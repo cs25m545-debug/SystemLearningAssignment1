@@ -24,8 +24,8 @@
   "final_validation_accuracy": 87.76,
   "elapsed_seconds": 770.8375079170219,
   "steps": 35200,
-  "wandb_url": null,
-  "wandb_mode": "offline",
+  "wandb_url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/x0hu8nqy",
+  "wandb_mode": "synced",
   "wandb_run_id": "x0hu8nqy",
   "synthetic": false
 }

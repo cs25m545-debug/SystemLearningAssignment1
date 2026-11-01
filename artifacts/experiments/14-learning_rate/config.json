@@ -1,0 +1,19 @@
+{
+  "activation": "relu",
+  "optimizer": "adam",
+  "batch_size": 128,
+  "epochs": 100,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0005,
+  "momentum": 0.9,
+  "seed": 42,
+  "split_seed": 42,
+  "validation_size": 5000,
+  "workers": 0,
+  "device": "mps",
+  "data_dir": "data",
+  "scheduler": "cosine",
+  "cutout": 16,
+  "synthetic": false,
+  "group": "learning_rate"
+}

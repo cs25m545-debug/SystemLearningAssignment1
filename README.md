@@ -11,10 +11,15 @@ best-validation checkpoint selection, separate test evaluation, and a PDF report
 (1,475 epochs). The selected checkpoint achieved **88.08% validation accuracy**
 and **86.61% test accuracy** on the official 10,000-example test set.
 The real checkpoint is in `artifacts/mac-final/best.pt`, and the detailed
-results/plots PDF with the repository URL is `artifacts/assignment1-draft.pdf`.
-W&B logs are offline:
-authenticate, synchronize them, export the parallel-coordinate panel, and supply
-the actual GitHub URL before generating the final submission PDF.
+final submission PDF with the repository URL is
+[artifacts/assignment1.pdf](artifacts/assignment1.pdf).
+All 16 experiments and their automatic plots have been uploaded to W&B; every
+remote epoch was checked against its saved local measurements. The native W&B
+parallel-coordinate panel is [artifacts/wandb-parallel.png](artifacts/wandb-parallel.png).
+See [the W&B report](https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/reports/CS6886W-Assignment-1---Verified-VGG6-experiments--VmlldzoxODIzNzMyMw==)
+and `artifacts/wandb-report.json` for verified run URLs.
+The W&B team project currently requires team access; all submission results and
+plots are also included in the public GitHub repository and PDF.
 
 **From-scratch reproduction passed:** retraining the selected configuration on
 the same Mac reproduced **88.08% validation accuracy**, **86.61% test accuracy**,
@@ -288,15 +293,48 @@ checkpoint: interrupted runs must be rerun in a fresh directory.
 
 ## GitHub and the single submission PDF
 
-Create your own repository and replace the URL below; no repository is published
-automatically. GitHub authentication and a destination were not provided.
+The code, real model, results, and final PDF are published in the public repository
+linked above. Regenerate the submitted PDF from the committed evidence without
+retraining or authenticating to W&B:
 
 ```bash
-uv run --locked vgg6 report --runs runs/real --final artifacts/final \
+uv run --locked vgg6 report --runs artifacts/experiments --final artifacts/mac-final \
   --github-url https://github.com/cs25m545-debug/SystemLearningAssignment1 \
   --wandb-parallel artifacts/wandb-parallel.png \
   --output artifacts/assignment1.pdf
 ```
+
+`artifacts/experiments/` contains all 16 configurations, verified summaries,
+per-epoch histories, and recorded environments. W&B's legacy offline sync command
+reported completion without remotely creating runs in this environment. The
+preserved measurements were therefore uploaded with the explicit replay option:
+
+```bash
+uv run --locked vgg6 sync --runs runs/mac-real --replay \
+  --project vgg6-cifar10 --entity cs25m545-indian-institute-of-technology-madras
+```
+
+This logs the original measured history and automatically generated plot images,
+marks their source as replayed history, and verifies remote configurations and
+best accuracies. It does not rerun optimization or invent measurements. The
+programmatic report creation additionally verified every remote epoch and metric
+against the original local CSV histories.
+
+To recreate the native W&B report and its screenshot after authenticated upload:
+
+```bash
+uv sync --locked --extra submission --python 3.11
+uv run --locked --extra submission playwright install chromium
+uv run --locked --extra submission python scripts/create_wandb_report.py \
+  --runs artifacts/experiments \
+  --entity cs25m545-indian-institute-of-technology-madras
+uv run --locked --extra submission python scripts/export_wandb_panel.py
+```
+
+The exporter renders the actual native W&B report panel, not a local substitute.
+Browser credentials are kept in memory and restricted to the W&B API; no browser
+profile or credential file is committed. `wandb-workspaces==0.2.0` and
+`playwright==1.51.0` are pinned in the optional `submission` extra.
 
 The generator refuses a non-draft PDF without real data, all five controlled
 comparison axes, completed runs, online W&B URLs, a GitHub-shaped repository URL,
@@ -320,8 +358,11 @@ The course handout `A1.pdf` remains local and is not redistributed in this repos
 
 `artifacts/results.csv` contains measured results for all 16 configurations.
 `artifacts/figures/` contains the selected run's four curves and validation
-scatter. `artifacts/assignment1-draft.pdf` includes the actual repository URL but
-is not submission-ready until the genuine W&B parallel-coordinate export is added.
+scatter. `artifacts/assignment1.pdf` is the final PDF containing the genuine W&B
+parallel-coordinate export, measured comparisons, all requested curves/scatter,
+one selected configuration, test accuracy, environment and reproduction proof.
+The older `artifacts/assignment1-draft.pdf` is retained only as historical output;
+submit the final PDF, not the draft.
 
 `config.py` validates parameters; `model.py` defines the network; `data.py`
 prepares datasets; `training.py` trains/logs/checkpoints; `evaluation.py` computes

@@ -286,3 +286,50 @@ def test_offline_sync_requires_verified_remote_measurements(tmp_path, monkeypatc
         assert json.loads(path.read_text()) == summary
     assert uploads[0][0][-1] == str(logs)
     assert uploads[0][1] is True
+
+
+def test_replay_uploads_saved_measurements_without_training(tmp_path, monkeypatch):
+    config = Config().to_dict()
+    directory = tmp_path / "run"
+    (directory / "wandb" / "offline-run-20261101-test").mkdir(parents=True)
+    summary = {
+        "status": "completed",
+        "config": config,
+        "synthetic": False,
+        "wandb_mode": "offline",
+        "wandb_run_id": "test",
+        "wandb_url": None,
+        "best_validation_accuracy": 70.0,
+        "best_epoch": 1,
+    }
+    (directory / "summary.json").write_text(json.dumps(summary))
+    history = [
+        {
+            "epoch": 1,
+            "step": 5,
+            "train/loss": 1.2,
+            "train/accuracy": 60.0,
+            "validation/loss": 0.8,
+            "validation/accuracy": 70.0,
+        }
+    ]
+    recorded = []
+    online = SimpleNamespace(
+        summary={}, log=recorded.append, define_metric=lambda *args, **kwargs: None
+    )
+    remote = SimpleNamespace(
+        config=config,
+        summary={"best_validation_accuracy": 70.0},
+        url="https://wandb.ai/entity/project/runs/test",
+    )
+    monkeypatch.setattr("vgg6.experiments.wandb.api", SimpleNamespace(api_key="test-only"))
+    monkeypatch.setattr(
+        "vgg6.experiments.wandb.Api", lambda: SimpleNamespace(run=lambda path: remote)
+    )
+    monkeypatch.setattr("vgg6.experiments.wandb.init", lambda **kwargs: nullcontext(online))
+    monkeypatch.setattr("vgg6.plots.read_history", lambda path: history)
+    monkeypatch.setattr("vgg6.plots.plot_run", lambda path: {})
+    assert sync_runs(tmp_path, "project", "entity", replay=True) == [remote.url]
+    assert recorded == history
+    assert online.summary["measurement_source"] == "replayed saved training history; no retraining"
+    assert json.loads((directory / "summary.json").read_text())["wandb_mode"] == "synced"

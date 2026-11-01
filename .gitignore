@@ -12,4 +12,5 @@ artifacts/mac-training.log
 artifacts/mac-reproduction.log
 artifacts/mac-assignment-draft.pdf
 A1.pdf
+artifacts/experiments/*/plots/
 .DS_Store

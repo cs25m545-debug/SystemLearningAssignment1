@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "config": {
+    "activation": "relu",
+    "optimizer": "adam",
+    "batch_size": 128,
+    "epochs": 50,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0005,
+    "momentum": 0.9,
+    "seed": 42,
+    "split_seed": 42,
+    "validation_size": 5000,
+    "workers": 0,
+    "device": "mps",
+    "data_dir": "data",
+    "scheduler": "cosine",
+    "cutout": 16,
+    "synthetic": false,
+    "group": "epochs"
+  },
+  "best_validation_accuracy": 86.08,
+  "best_epoch": 49,
+  "final_validation_accuracy": 86.06,
+  "elapsed_seconds": 388.4763300830382,
+  "steps": 17600,
+  "wandb_url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/npwbyq99",
+  "wandb_mode": "synced",
+  "wandb_run_id": "npwbyq99",
+  "synthetic": false
+}

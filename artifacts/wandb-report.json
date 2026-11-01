@@ -1,0 +1,118 @@
+{
+  "report_url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/reports/CS6886W-Assignment-1---Verified-VGG6-experiments--VmlldzoxODIzNzMyMw==",
+  "project_url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10",
+  "runs": [
+    {
+      "run": "00-baseline",
+      "id": "2daojmr0",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/2daojmr0",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 87.74
+    },
+    {
+      "run": "01-activation",
+      "id": "3mg186uh",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/3mg186uh",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 71.68
+    },
+    {
+      "run": "02-activation",
+      "id": "5sujcov2",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/5sujcov2",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 79.9
+    },
+    {
+      "run": "03-activation",
+      "id": "k5lkyj16",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/k5lkyj16",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 86.96
+    },
+    {
+      "run": "04-activation",
+      "id": "098ul8lm",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/098ul8lm",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 87.5
+    },
+    {
+      "run": "05-optimizer",
+      "id": "r2h08xgt",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/r2h08xgt",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 74.66
+    },
+    {
+      "run": "06-optimizer",
+      "id": "fuluvfjs",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/fuluvfjs",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 74.98
+    },
+    {
+      "run": "07-optimizer",
+      "id": "1d1cichp",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/1d1cichp",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 62.48
+    },
+    {
+      "run": "08-optimizer",
+      "id": "x0hu8nqy",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/x0hu8nqy",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 88.08
+    },
+    {
+      "run": "09-optimizer",
+      "id": "mdswix72",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/mdswix72",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 87.98
+    },
+    {
+      "run": "10-batch_size",
+      "id": "5f9e6g9i",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/5f9e6g9i",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 87.82
+    },
+    {
+      "run": "11-batch_size",
+      "id": "9pvl5d7c",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/9pvl5d7c",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 86.92
+    },
+    {
+      "run": "12-epochs",
+      "id": "ol0tobwn",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/ol0tobwn",
+      "epochs_verified": 25,
+      "best_validation_accuracy": 82.52
+    },
+    {
+      "run": "13-epochs",
+      "id": "npwbyq99",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/npwbyq99",
+      "epochs_verified": 50,
+      "best_validation_accuracy": 86.08
+    },
+    {
+      "run": "14-learning_rate",
+      "id": "jemng4xa",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/jemng4xa",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 77.98
+    },
+    {
+      "run": "15-learning_rate",
+      "id": "wtaiufu5",
+      "url": "https://wandb.ai/cs25m545-indian-institute-of-technology-madras/vgg6-cifar10/runs/wtaiufu5",
+      "epochs_verified": 100,
+      "best_validation_accuracy": 79.24
+    }
+  ]
+}

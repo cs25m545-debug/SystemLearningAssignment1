@@ -19,6 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest==8.3.5", "ruff==0.9.10"]
+submission = ["wandb-workspaces==0.2.0", "playwright==1.51.0"]
 
 [project.scripts]
 vgg6 = "vgg6.cli:main"

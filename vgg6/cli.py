@@ -76,6 +76,11 @@ def main():
     sync.add_argument("--runs", type=Path, required=True)
     sync.add_argument("--project", default="vgg6-cifar10")
     sync.add_argument("--entity", required=True)
+    sync.add_argument(
+        "--replay",
+        action="store_true",
+        help="Upload saved measured CSV history through online logging",
+    )
     for name in ("evaluate", "finalize"):
         command = commands.add_parser(name)
         command.add_argument("--device", choices=("auto", "cpu", "cuda", "mps"), default="auto")
@@ -113,7 +118,7 @@ def main():
     elif args.command == "finalize":
         result = finalize(args.runs, args.output, args.device, args.data_dir)
     elif args.command == "sync":
-        result = sync_runs(args.runs, args.project, args.entity)
+        result = sync_runs(args.runs, args.project, args.entity, args.replay)
     else:
         result = str(
             build_report(

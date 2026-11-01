@@ -6,9 +6,9 @@ from dataclasses import replace
 from pathlib import Path
 
 import torch
-import wandb
 import yaml
 
+import wandb
 from vgg6.config import Config, controlled_configs
 from vgg6.data import evaluation_loader
 from vgg6.evaluation import evaluate
@@ -88,7 +88,7 @@ def completed_runs(root: Path):
     return results
 
 
-def sync_runs(root: Path, project: str, entity: str):
+def sync_runs(root: Path, project: str, entity: str, replay=False):
     """Upload offline logs, then verify remote measurements before recording their URLs."""
     if not wandb.api.api_key:
         raise RuntimeError("Authenticate first with: uv run --locked wandb login")
@@ -103,20 +103,55 @@ def sync_runs(root: Path, project: str, entity: str):
         log_dirs = list((directory / "wandb").glob(f"offline-run-*-{run_id}"))
         if len(log_dirs) != 1:
             raise ValueError(f"Expected exactly one offline log directory for {directory}")
-        subprocess.run(
-            [
-                sys.executable,
-                "-m",
-                "wandb",
-                "sync",
-                "--entity",
-                entity,
-                "--project",
-                project,
-                str(log_dirs[0]),
-            ],
-            check=True,
-        )
+        if replay:
+            from vgg6.plots import plot_run, read_history
+
+            with wandb.init(
+                entity=entity,
+                project=project,
+                id=run_id,
+                resume="allow",
+                mode="online",
+                config=summary["config"],
+                name=directory.name,
+                group=summary["config"]["group"],
+                dir=str(directory),
+            ) as online:
+                online.define_metric("step")
+                for metric in (
+                    "train/loss",
+                    "train/accuracy",
+                    "validation/loss",
+                    "validation/accuracy",
+                ):
+                    online.define_metric(metric, step_metric="step")
+                for row in read_history(directory):
+                    online.log(row)
+                for name, image in plot_run(directory).items():
+                    online.log({f"plots/{name}": wandb.Image(str(image))})
+                online.summary.update(
+                    {
+                        "best_validation_accuracy": summary["best_validation_accuracy"],
+                        "best_epoch": summary["best_epoch"],
+                        "synthetic": summary["synthetic"],
+                        "measurement_source": "replayed saved training history; no retraining",
+                    }
+                )
+        else:
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "wandb",
+                    "sync",
+                    "--entity",
+                    entity,
+                    "--project",
+                    project,
+                    str(log_dirs[0]),
+                ],
+                check=True,
+            )
         remote = api.run(f"{entity}/{project}/{run_id}")
         if remote.summary.get("best_validation_accuracy") != summary["best_validation_accuracy"]:
             raise ValueError(f"Synced accuracy does not match local measurements: {directory}")
