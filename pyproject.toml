@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools==75.8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vgg6-cifar10"
+version = "0.1.0"
+description = "Reproducible VGG6 experiments for CS6886W Assignment 1"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "torch==2.6.0",
+  "torchvision==0.21.0",
+  "numpy==2.2.3",
+  "matplotlib==3.10.0",
+  "wandb==0.19.8",
+  "PyYAML==6.0.2",
+  "reportlab==4.3.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.5", "ruff==0.9.10"]
+
+[project.scripts]
+vgg6 = "vgg6.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vgg6*"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

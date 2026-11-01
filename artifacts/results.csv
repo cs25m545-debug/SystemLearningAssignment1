@@ -1,0 +1,17 @@
+run,activation,optimizer,batch_size,epochs,learning_rate,weight_decay,momentum,seed,split_seed,validation_size,workers,device,data_dir,scheduler,cutout,synthetic,group,best_validation_accuracy,final_validation_accuracy,best_epoch,steps,elapsed_seconds
+00-baseline,relu,adam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,baseline,87.74,87.74,100,35200,794.2803609159891
+01-activation,sigmoid,adam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,activation,71.68,71.3,93,35200,775.858699458011
+02-activation,tanh,adam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,activation,79.9,79.62,90,35200,778.8497912920429
+03-activation,silu,adam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,activation,86.96,86.52,90,35200,781.2207554170163
+04-activation,gelu,adam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,activation,87.5,87.2,87,35200,782.8839709589956
+05-optimizer,relu,sgd,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,optimizer,74.66,74.2,87,35200,763.1740434169769
+06-optimizer,relu,nesterov,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,optimizer,74.98,74.66,98,35200,765.652907333977
+07-optimizer,relu,adagrad,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,optimizer,62.48,62.22,79,35200,769.0183950830251
+08-optimizer,relu,rmsprop,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,optimizer,88.08,87.76,92,35200,770.8375079170219
+09-optimizer,relu,nadam,128,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,optimizer,87.98,87.72,99,35200,778.4161068749963
+10-batch_size,relu,adam,64,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,batch_size,87.82,87.82,100,70400,942.9169197080191
+11-batch_size,relu,adam,256,100,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,batch_size,86.92,86.82,98,17600,748.9643144590082
+12-epochs,relu,adam,128,25,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,epochs,82.52,82.4,24,8800,194.56158270896412
+13-epochs,relu,adam,128,50,0.001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,epochs,86.08,86.06,49,17600,388.4763300830382
+14-learning_rate,relu,adam,128,100,0.0001,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,learning_rate,77.98,77.52,85,35200,777.8024191250443
+15-learning_rate,relu,adam,128,100,0.01,0.0005,0.9,42,42,5000,0,mps,data,cosine,16,False,learning_rate,79.24,78.84,98,35200,776.2268617920345

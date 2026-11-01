@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "config": {
+    "activation": "relu",
+    "optimizer": "rmsprop",
+    "batch_size": 128,
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0005,
+    "momentum": 0.9,
+    "seed": 42,
+    "split_seed": 42,
+    "validation_size": 5000,
+    "workers": 0,
+    "device": "mps",
+    "data_dir": "data",
+    "scheduler": "cosine",
+    "cutout": 16,
+    "synthetic": false,
+    "group": "optimizer"
+  },
+  "best_validation_accuracy": 88.08,
+  "best_epoch": 92,
+  "final_validation_accuracy": 87.76,
+  "elapsed_seconds": 770.8375079170219,
+  "steps": 35200,
+  "wandb_url": null,
+  "wandb_mode": "offline",
+  "wandb_run_id": "x0hu8nqy",
+  "synthetic": false
+}

@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "reproduction_run": "runs/mac-reproduction",
+  "reference_validation_accuracy": 88.08,
+  "reproduced_validation_accuracy": 88.08,
+  "reference_test_accuracy": 86.61,
+  "reproduced_test_accuracy": 86.61,
+  "reproduced_best_epoch": 92
+}

@@ -1,0 +1,28 @@
+{
+  "selected_run": "runs/mac-real/08-optimizer",
+  "config": {
+    "activation": "relu",
+    "optimizer": "rmsprop",
+    "batch_size": 128,
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0005,
+    "momentum": 0.9,
+    "seed": 42,
+    "split_seed": 42,
+    "validation_size": 5000,
+    "workers": 0,
+    "device": "mps",
+    "data_dir": "data",
+    "scheduler": "cosine",
+    "cutout": 16,
+    "synthetic": false,
+    "group": "optimizer"
+  },
+  "best_epoch": 92,
+  "best_validation_accuracy": 88.08,
+  "test_accuracy": 86.61,
+  "test_loss": 0.4080603096485138,
+  "test_samples": 10000,
+  "synthetic": false
+}
